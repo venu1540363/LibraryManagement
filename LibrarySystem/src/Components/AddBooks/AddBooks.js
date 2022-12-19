@@ -3,7 +3,7 @@ import './AddBooks.css';
 
 function AddBooks () {
 	return (
-		<>
+		<body>
 		<div class="container">
   <div class="row">
     <div class="col-md-4">
@@ -45,7 +45,7 @@ function AddBooks () {
     </div>
   </div>
 </div>
-		</>
+		</body>
 	)
 }
 
