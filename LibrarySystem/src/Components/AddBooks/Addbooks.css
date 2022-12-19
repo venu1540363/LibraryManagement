@@ -1,58 +1,101 @@
+@property --rotate {
+	syntax: "<angle>";
+	initial-value: 132deg;
+	inherits: false;
+}
+
+:root {
+	--card-height: 65vh;
+	--card-width: calc(var(--card-height) / 1.5);
+}
+
+
 body {
-	background: #2c3e50;
-	color: white;
-	font-family: monospace;
+	min-height: 100vh;
+	background: #212534;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+	box-sizing: border-box;
 }
 
-input,
-.modal {
-	color: black;
+
+.card {
+	background: #191c29;
+	width: var(--card-width);
+	height: var(--card-height);
+	padding: 3px;
+	position: relative;
+	border-radius: 6px;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	display: flex;
+	font-size: 1.5em;
+	color: rgb(88 199 250 / 0%);
+	cursor: pointer;
+	font-family: cursive;
 }
 
-.table-striped>tbody>tr:nth-child(2n + 1)>td,
-.table-striped>tbody>tr:nth-child(2n + 1)>th {
-	background-color: #34495e;
+.card:hover {
+	color: rgb(88 199 250 / 100%);
+	transition: color 1s;
 }
 
-.row .alert {
-	margin-top: 25px;
+.card:hover:before,
+.card:hover:after {
+	animation: none;
+	opacity: 0;
 }
 
-th,
-td {
-	border-top: none !important;
+
+.card::before {
+	content: "";
+	width: 104%;
+	height: 102%;
+	border-radius: 8px;
+	background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+	position: absolute;
+	z-index: -1;
+	top: -1%;
+	left: -2%;
+	animation: spin 2.5s linear infinite;
 }
 
-h3 {
-	background-color: #333;
-	padding: 12px;
-	border-top-right-radius: 20px;
-	font-weight: bolder;
-	letter-spacing: .1em;
+.card::after {
+	position: absolute;
+	content: "";
+	top: calc(var(--card-height) / 6);
+	left: 0;
+	right: 0;
+	z-index: -1;
+	height: 100%;
+	width: 100%;
+	margin: 0 auto;
+	transform: scale(0.8);
+	filter: blur(calc(var(--card-height) / 6));
+	background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+	opacity: 1;
+	transition: opacity .5s;
+	animation: spin 2.5s linear infinite;
 }
 
-.modal-content {
-	border-radius: 0;
+@keyframes spin {
+	0% {
+		--rotate: 0deg;
+	}
+
+	100% {
+		--rotate: 360deg;
+	}
 }
 
-.modal-header,
-.modal-footer {
-	background-color: #333;
-	color: white;
-	border: 0;
-}
-
-.modal-body {
-	background: #2c3e50;
-	color: white;
-}
-
-.close,
-.close:hover {
-	color: white;
-}
-
-.btn {
-	font-weight: bolder;
-	letter-spacing: .2em;
+a {
+	color: #212534;
+	text-decoration: none;
+	font-family: sans-serif;
+	font-weight: bold;
+	margin-top: 2rem;
 }
